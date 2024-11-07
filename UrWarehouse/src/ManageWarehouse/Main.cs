@@ -50,9 +50,101 @@ namespace UrWarehouse{
             // separator line
             Console.WriteLine(new string('-', colSizes.Sum() + 10));
         }
-        public void AddItem(){}
-        public void Search(){}
+        public void AddItem(){
+            Console.WriteLine("Adding item...");
+                            Console.Write("Enter item name: ");
+                            string name = Console.ReadLine();
+
+                            Console.Write("Enter item price: ");
+                            if (!decimal.TryParse(Console.ReadLine(), out decimal price))
+                            {
+                                Console.WriteLine("Invalid price. Item not added.");
+                                return;
+                            }
+
+                            Console.Write("Enter item quantity: ");
+                            if (!int.TryParse(Console.ReadLine(), out int quantity))
+                            {
+                                Console.WriteLine("Invalid quantity. Item not added.");
+                                return;
+                            }
+
+                            Item newItem = new Item(name, price, quantity);
+                            Array.Resize(ref inventory, inventory.Length + 1);
+                            inventory[^1] = newItem;
+
+                            Console.WriteLine("Item added successfully.");  
+        }
+        public void Search(){
+             Console.WriteLine("Search by (name/price/quantity): ");
+    string searchBy = Console.ReadLine()?.ToLower(); 
+
+    switch (searchBy)
+    {
+        case "name":
+            Console.Write("Enter item name to search: ");
+            string name = Console.ReadLine();
+            var nameResults = inventory.Where(i => i.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
+            DisplaySearchResults(nameResults);
+            break;
+
+        case "price":
+            Console.Write("Enter minimum price: ");
+            if (!decimal.TryParse(Console.ReadLine(), out decimal minPrice))
+            {
+                Console.WriteLine("Invalid price.");
+                return;
+            }
+            Console.Write("Enter maximum price: ");
+            if (!decimal.TryParse(Console.ReadLine(), out decimal maxPrice))
+            {
+                Console.WriteLine("Invalid price.");
+                return;
+            }
+            var priceResults = inventory.Where(i => i.Price >= minPrice && i.Price <= maxPrice).ToList();
+            DisplaySearchResults(priceResults);
+            break;
+        
+        case "quantity":
+            Console.Write("Enter minimum quantity: ");
+            if (!int.TryParse(Console.ReadLine(), out int minQuantity))
+            {
+                Console.WriteLine("Invalid quantity.");
+                return;
+            }
+            Console.Write("Enter maximum quantity: ");
+            if (!int.TryParse(Console.ReadLine(), out int maxQuantity))
+            {
+                Console.WriteLine("Invalid quantity.");
+                return;
+            }
+            var quantityResults = inventory.Where(i => i.Quantity >= minQuantity && i.Quantity <= maxQuantity).ToList();
+            DisplaySearchResults(quantityResults);
+            break;
+
+
+        default:
+            Console.WriteLine("Invalid search criteria. Choose either 'name', 'price', or 'quantity'.");
+            break;
+        }
 
         }
+         private void DisplaySearchResults(List<Item> results)
+{
+    if (results.Count > 0)
+    {
+        Console.WriteLine("Search Results:");
+        foreach (var item in results)
+        {
+            Console.WriteLine($"{item.Name}, Price: {item.Price}, Quantity: {item.Quantity}, Total Price: {item.TotalPrice}");
+        }
     }
+    else
+    {
+        Console.WriteLine("No items found.");
+    }
+    Console.WriteLine(" ");
+}
+    }
+}
 
