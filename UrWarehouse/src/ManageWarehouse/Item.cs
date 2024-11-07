@@ -8,8 +8,6 @@ namespace UrWarehouse
         public decimal Quantity { get; set; }
         public decimal TotalPrice { get; set; }
 
-        private static int idCounter = 0; 
-
         public Item(string name) : this(name, 0, 1)
         {
         }
@@ -18,7 +16,6 @@ namespace UrWarehouse
         }
         public Item(string name, decimal price, int quantity)
         {
-            Id = ++idCounter; 
             Name = name;
             Price = price;
             Quantity = quantity;
