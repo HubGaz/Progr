@@ -1,12 +1,10 @@
-﻿
-namespace ManageWarehouse
+﻿namespace Ur
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            
         }
     }
 }
