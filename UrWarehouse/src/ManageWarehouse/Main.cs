@@ -41,11 +41,11 @@ namespace UrWarehouse{
             // each item row
             foreach (Item item in inventory)
             {
-                Console.Write(item.Id.PadLeft(colSizes[0] + 2));
-                Console.Write(item.Name.PadLeft(colSizes[1] + 2));
-                Console.Write(item.Price.ToString().PadLeft(colSizes[2] + 2));
-                Console.Write(item.Quantity.ToString().PadLeft(colSizes[3] + 2));
-                Console.WriteLine(item.TotalPrice.ToString().PadLeft(colSizes[4] + 2));
+                Console.Write(" ID: " + item.Id + " ");
+                Console.Write(" Name: " + item.Name  + " " );
+                Console.Write(" Price: " + item.Price.ToString()  + " " );
+                Console.Write(" Quantity: " + item.Quantity.ToString()  + " ");
+                Console.WriteLine(" Total Price: " + item.TotalPrice.ToString()  + " ");
             }
 
             // separator line
