@@ -5,12 +5,12 @@ namespace UrWarehouse{
 
         public Mainhouse(){
             inventory = new Item[]{
-                new Item("Przedmiot 1",100,2),
-                new Item("Przedmiot 2",33,300),
-                new Item("Przedmiot 3",1,200),
-                new Item("Przedmiot 4",5,13),
-                new Item("Przedmiot 5",8,10),
-                new Item("Przedmiot 6",13,100000)
+                new Item(1,"Przedmiot 1",100,2),
+                new Item(2,"Przedmiot 2",33,300),
+                new Item(3,"Przedmiot 3",1,200),
+                new Item(4,"Przedmiot 4",5,13),
+                new Item(5,"Przedmiot 5",8,10),
+                new Item(6,"Przedmiot 6",13,100000)
             };
         }
                     public void ViewInventory()
@@ -41,10 +41,11 @@ namespace UrWarehouse{
             // each item row
             foreach (Item item in inventory)
             {
-                Console.Write(item.Name.PadLeft(colSizes[0] + 2));
-                Console.Write(item.Price.ToString().PadLeft(colSizes[1] + 2));
-                Console.Write(item.Quantity.ToString().PadLeft(colSizes[2] + 2));
-                Console.WriteLine(item.TotalPrice.ToString().PadLeft(colSizes[3] + 2));
+                Console.Write(item.Id.PadLeft(colSizes[0] + 2));
+                Console.Write(item.Name.PadLeft(colSizes[1] + 2));
+                Console.Write(item.Price.ToString().PadLeft(colSizes[2] + 2));
+                Console.Write(item.Quantity.ToString().PadLeft(colSizes[3] + 2));
+                Console.WriteLine(item.TotalPrice.ToString().PadLeft(colSizes[4] + 2));
             }
 
             // separator line
@@ -52,6 +53,14 @@ namespace UrWarehouse{
         }
         public void AddItem(){
             Console.WriteLine("Adding item...");
+                            
+                            Console.WriteLine("Enter item ID :");
+                            if(!int.TryParse(Console.ReadLine(), out int Id))
+                             {
+                                Console.WriteLine("Invalid ID");
+                                return;
+                             }
+
                             Console.Write("Enter item name: ");
                             string name = Console.ReadLine();
 
@@ -69,7 +78,7 @@ namespace UrWarehouse{
                                 return;
                             }
 
-                            Item newItem = new Item(name, price, quantity);
+                            Item newItem = new Item(Id,name, price, quantity);
                             Array.Resize(ref inventory, inventory.Length + 1);
                             inventory[^1] = newItem;
 
