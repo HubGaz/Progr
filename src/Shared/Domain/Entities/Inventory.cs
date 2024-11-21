@@ -11,6 +11,11 @@
             new Item(2, "Telewizor", 1600.00, 50),
             new Item(3, "Mikser", 1200.50, 5)
         };
+        
+        }
+        public void AddItem()
+        {   
 
         }
-    }
+
+}

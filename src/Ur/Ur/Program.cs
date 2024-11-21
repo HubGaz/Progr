@@ -35,8 +35,8 @@ static void Main(string[] args)
             break;
 
             case 2:
-                    void AddItem() { };
-                    Console.WriteLine("   ");
+                    Console.WriteLine("Dodaj nowy przedmiot:");
+                    Inventory.AddItem();
             break;
 
             case 3:
