@@ -1,10 +1,11 @@
 ﻿namespace Domain.Entities;
-
 class Program { 
 static void Main(string[] args)
 {
         bool Doit = true;
         int choice;
+
+        
         do
         {
             Console.WriteLine("Menu:");
@@ -16,6 +17,7 @@ static void Main(string[] args)
             Console.WriteLine("5. Exit: ");
             Console.WriteLine("   ");
             Console.WriteLine("What do you want to do ? :");
+
             if (!int.TryParse(Console.ReadLine(), out choice))
             {
                 Console.WriteLine("Invalid choice, choose again ");
@@ -23,7 +25,12 @@ static void Main(string[] args)
             switch (choice) { 
             
             case 1:
-                   void ViewInventory(){ };
+                    var items = Inventory.GetItems();
+                    Console.WriteLine("Lista przedmiotów:");
+                    foreach (var item in items)
+                    {
+                        item.ViewInventory();
+                    }
                     Console.WriteLine("   ");
             break;
 

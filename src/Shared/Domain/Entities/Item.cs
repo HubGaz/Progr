@@ -1,4 +1,5 @@
-﻿public class Item
+﻿
+public class Item
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -11,4 +12,11 @@
         Price = price;
         Quantity = quantity;
     }
+
+    public void ViewInventory()
+    {
+        Console.WriteLine($"ID: {Id}, Name: {Name}, Price: ${Price:F2}, Quantity: {Quantity}");
+    }
+
 }
+
