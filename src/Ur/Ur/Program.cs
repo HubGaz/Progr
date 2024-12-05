@@ -107,7 +107,43 @@ class Program
         void Sort()
         {
 
-        }
+            Console.WriteLine("Sort by:");
+            Console.WriteLine("1. ID");
+            Console.WriteLine("2. Name");
+            Console.WriteLine("3. Price");
+            Console.Write("Enter your choice (1-3): ");
+
+            if (!int.TryParse(Console.ReadLine(), out int sortChoice))
+            {
+                Console.WriteLine("Invalid choice. Returning to main menu.");
+                return;
+            }
+
+            var items = Inventory.GetItems().ToList();
+
+            switch (sortChoice)
+            {
+                case 1:
+                    items = items.OrderBy(x => x.Id).ToList();
+                    break;
+                case 2:
+                    items = items.OrderBy(x => x.Name).ToList();
+                    break;
+                case 3:
+                    items = items.OrderBy(x => x.Price).ToList();
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice.");
+                    return;
+            }
+
+            Console.WriteLine("\nSorted inventory:");
+            foreach (var item in items)
+            {
+                item.ViewInventory();
+            }
+        
+    }
         do
         {
             Console.WriteLine("Menu:");
