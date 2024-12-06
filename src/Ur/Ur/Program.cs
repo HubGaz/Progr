@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-
-namespace Domain.Entities;
+﻿namespace Domain.Entities;
 class Program
 {
     static void Main(string[] args)
@@ -146,14 +144,18 @@ class Program
     }
         do
         {
+            
             Console.WriteLine("Menu:");
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("   ");
             Console.WriteLine("1. View inventory: ");
             Console.WriteLine("2. Add item: ");
             Console.WriteLine("3. Search (for item): ");
             Console.WriteLine("4. Sort (Id/Name/Price): ");
-            Console.WriteLine("5. Exit: ");
+            Console.WriteLine("5. Save to file: ");
+            Console.WriteLine("6. Exit: ");
             Console.WriteLine("   ");
+            Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("What do you want to do ? :");
 
             if (!int.TryParse(Console.ReadLine(), out choice))
@@ -165,7 +167,9 @@ class Program
 
                 case 1:
                     var items = Inventory.GetItems();
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Lista przedmiotów:");
+                    Console.ForegroundColor = ConsoleColor.White;
                     foreach (var item in items)
                     {
                         item.ViewInventory();
@@ -189,9 +193,14 @@ class Program
                     break;
 
                 case 5:
+                    Inventory.SaveToJson();
+                    break;
+
+                case 6:
                     Console.WriteLine("Have a great day");
                     Doit = false;
                     break;
+                
             };
         } while (Doit);
 

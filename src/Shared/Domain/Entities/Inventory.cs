@@ -1,9 +1,8 @@
 ﻿
  public class Inventory
 {
-    // Lista jako pole klasy, żeby można było nią zarządzać
     private static List<Item> _items = new List<Item>();
-
+    private const string JsonFilePath = @"C:\Users\diabl\Documents\GitHub\Progr\src\Ur\inventory.json";
     public static List<Item> GetItems()
     {
         if (!_items.Any())
@@ -21,7 +20,12 @@
     public static void AddItem(Item item)
     {
         _items.Add(item);
+        
     }
-
+    public static void SaveToJson()
+    {
+        string jsonString = System.Text.Json.JsonSerializer.Serialize(_items);
+        File.WriteAllText(JsonFilePath, jsonString);
+    }
 
 }
