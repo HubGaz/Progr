@@ -5,7 +5,29 @@ class Program
     {
         bool Doit = true;
         int choice;
+        string message;
+         void Error(string message)
+        {
+            switch (message) {
 
+                case "price":
+                    Console.WriteLine($" Invalid {message}");
+                break;
+
+                case "quantity":
+                    Console.WriteLine($" Invalid {message}");
+                break;
+
+                case "id":
+                    Console.WriteLine($"Invalid {message}");
+                break;
+
+                case "choice":
+                    Console.WriteLine($"Invalid {message},returning to menu");
+                break;
+            }
+
+        }
          void Add()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -16,7 +38,9 @@ class Program
             while (!int.TryParse(Console.ReadLine(), out id))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Wrong ID (needs to be number)");
+
+                message = "id";
+                Error(message);
                 Console.ForegroundColor = ConsoleColor.White;
             }
 
@@ -28,7 +52,9 @@ class Program
             if (!double.TryParse(Console.ReadLine(), out double price))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid price. Item not added.");
+                message = "price";
+                Error(message);
+                
                 Console.ForegroundColor = ConsoleColor.White;
                 return;
             }
@@ -37,7 +63,8 @@ class Program
             if (!int.TryParse(Console.ReadLine(), out int quantity))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid quantity. Item not added.");
+                message = "quantity";
+                Error(message);
                 Console.ForegroundColor = ConsoleColor.White;
                 return;
             }
@@ -55,9 +82,11 @@ class Program
             Console.WriteLine("2. Name");
             Console.Write("Enter your choice (1 or 2): ");
 
-            if (!int.TryParse(Console.ReadLine(), out int searchChoice))
-            {
-                Console.WriteLine("Invalid choice. Returning to main menu.");
+            if (!int.TryParse(Console.ReadLine(), out int searchChoice)){
+
+                message = "choice";
+                Error(message);
+                
                 return;
             }
 
