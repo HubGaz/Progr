@@ -249,6 +249,7 @@ class Program
 
                 case 1:
                     var items = Inventory.GetItems();
+
                     View();
                     break;
 
