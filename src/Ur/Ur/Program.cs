@@ -6,6 +6,18 @@ class Program
         bool Doit = true;
         int choice;
         string message;
+        void View()
+        {
+            var items = Inventory.GetItems();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Lista przedmiotów:");
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (var item in items)
+            {
+                item.ViewInventory();
+            }
+            Console.WriteLine("   ");
+        }
          void Error(string message)
         {
             switch (message) {
@@ -25,9 +37,15 @@ class Program
                 case "choice":
                     Console.WriteLine($"Invalid {message},returning to menu");
                 break;
-            }
+
+                case "ID":
+                    Console.WriteLine($"Invalid {message} format.");
+                break;
+
+    }
 
         }
+
          void Add()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -97,7 +115,8 @@ class Program
                     if (!int.TryParse(Console.ReadLine(), out int searchId))
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Invalid ID format.");
+                        message = "ID";
+                        Error(message);
                         Console.ForegroundColor = ConsoleColor.White;
                         return;
                     }
@@ -111,7 +130,8 @@ class Program
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("No item found with that ID.");
+                        message = "that ID";
+                        Error(message);
                         Console.ForegroundColor = ConsoleColor.Green;
                     }
                     break;
@@ -135,7 +155,7 @@ class Program
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("No items found with that name.");
+                        Console.WriteLine("No item found with that name");
                         Console.ForegroundColor = ConsoleColor.White;
                     }
                     break;
@@ -191,6 +211,15 @@ class Program
             }
         
     }
+        void Update()
+        {
+
+        }
+        void Remove() {
+        
+        }
+
+
         do
         {
             
@@ -202,7 +231,9 @@ class Program
             Console.WriteLine("3. Search (for item): ");
             Console.WriteLine("4. Sort (Id/Name/Price): ");
             Console.WriteLine("5. Save to file: ");
-            Console.WriteLine("6. Exit: ");
+            Console.WriteLine("6. Update: ");
+            Console.WriteLine("7. Remove: ");
+            Console.WriteLine("8. Exit");
             Console.WriteLine("   ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("What do you want to do ? :");
@@ -218,14 +249,8 @@ class Program
 
                 case 1:
                     var items = Inventory.GetItems();
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Lista przedmiotów:");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    foreach (var item in items)
-                    {
-                        item.ViewInventory();
-                    }
-                    Console.WriteLine("   ");
+
+                    View();
                     break;
 
                 case 2:
@@ -246,8 +271,14 @@ class Program
                 case 5:
                     Inventory.SaveToJson();
                     break;
-
                 case 6:
+                    Update();
+                    break;
+                case 7:
+                    Remove();
+                    break;
+
+                case 8:
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Have a great day");
                     Console.ForegroundColor = ConsoleColor.White;
