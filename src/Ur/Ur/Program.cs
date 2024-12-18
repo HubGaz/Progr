@@ -6,6 +6,18 @@ class Program
         bool Doit = true;
         int choice;
         string message;
+        void View()
+        {
+            var items = Inventory.GetItems();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Lista przedmiotów:");
+            Console.ForegroundColor = ConsoleColor.White;
+            foreach (var item in items)
+            {
+                item.ViewInventory();
+            }
+            Console.WriteLine("   ");
+        }
          void Error(string message)
         {
             switch (message) {
@@ -217,15 +229,7 @@ class Program
             {
 
                 case 1:
-                    var items = Inventory.GetItems();
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Lista przedmiotów:");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    foreach (var item in items)
-                    {
-                        item.ViewInventory();
-                    }
-                    Console.WriteLine("   ");
+                    View();
                     break;
 
                 case 2:
