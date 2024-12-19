@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities;
+﻿using System.Diagnostics;
+
+namespace Domain.Entities;
 class Program
 {
     static void Main(string[] args)
@@ -213,9 +215,66 @@ class Program
     }
         void Update()
         {
+            var items = Inventory.GetItems();
+            int ilosc = items.Count;
+
+            Console.WriteLine("Enter number of item to update: ");
+            if (!int.TryParse(Console.ReadLine(), out int selection) || selection < 1 || selection > ilosc)
+            {
+                Console.WriteLine("Invalid choice");
+            }
+
+            var selectedItem = items[selection - 1];
+
+            Console.WriteLine("Enter new name:");
+            string newName = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(newName))
+            {
+
+                newName = selectedItem.Name;
+            }
+
+            Console.Write("\nEnter new price (press Enter to keep current): ");
+            string priceInput = Console.ReadLine();
+            double newPrice = selectedItem.Price;
+
+            if (!string.IsNullOrWhiteSpace(priceInput))
+            {
+
+                if (!double.TryParse(priceInput, out newPrice))
+                {
+
+                    string error = "price";
+                    // DisplayError(ilosc, error);
+                }
+            }
+
+            Console.Write("\nEnter new quantity (press Enter to keep current): ");
+            string quantityInput = Console.ReadLine();
+            int newQuantity = (int)selectedItem.Quantity;
+
+            if (!string.IsNullOrWhiteSpace(quantityInput))
+            {
+
+                if (!int.TryParse(quantityInput, out newQuantity))
+                {
+
+                    string error = "quantity";
+                    // DisplayError(ilosc, error);
+                }
+            }
+
+            selectedItem.Name = newName;
+            selectedItem.Price = newPrice;
+            selectedItem.Quantity = newQuantity;
+
+
+            Console.WriteLine("\nItem Updated Succesfully");
+
 
         }
-        void Remove() {
+    void Remove() {
         
         }
 
