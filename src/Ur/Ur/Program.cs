@@ -20,29 +20,21 @@ class Program
             }
             Console.WriteLine("   ");
         }
-         void Error(string message)
+         void Error(int err, string message)
         {
-            switch (message) {
+            switch (err) {
 
-                case "price":
+                case 1:
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($" Invalid {message}");
-                break;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
 
-                case "quantity":
-                    Console.WriteLine($" Invalid {message}");
-                break;
-
-                case "id":
-                    Console.WriteLine($"Invalid {message}");
-                break;
-
-                case "choice":
-                    Console.WriteLine($"Invalid {message},returning to menu");
-                break;
-
-                case "ID":
-                    Console.WriteLine($"Invalid {message} format.");
-                break;
+                case 2:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("no item found");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
 
     }
 
@@ -58,9 +50,9 @@ class Program
             while (!int.TryParse(Console.ReadLine(), out id))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-
+                int err = 1;
                 message = "id";
-                Error(message);
+                Error(err,message);
                 Console.ForegroundColor = ConsoleColor.White;
             }
 
@@ -71,21 +63,18 @@ class Program
             Console.Write("Enter item price: ");
             if (!double.TryParse(Console.ReadLine(), out double price))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                int err = 1;
                 message = "price";
-                Error(message);
-                
-                Console.ForegroundColor = ConsoleColor.White;
+                Error(err,message);
                 return;
             }
 
             Console.Write("Enter item quantity: ");
             if (!int.TryParse(Console.ReadLine(), out int quantity))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                int err = 1;
                 message = "quantity";
-                Error(message);
-                Console.ForegroundColor = ConsoleColor.White;
+                Error(err,message);
                 return;
             }
 
@@ -103,9 +92,9 @@ class Program
             Console.Write("Enter your choice (1 or 2): ");
 
             if (!int.TryParse(Console.ReadLine(), out int searchChoice)){
-
+                int err = 1;
                 message = "choice";
-                Error(message);
+                Error(err,message);
                 
                 return;
             }
@@ -113,13 +102,12 @@ class Program
             switch (searchChoice)
             {
                 case 1:
-                    Console.Write("Enter ID to search: ");
+                    Console.Write("Enter id to search: ");
                     if (!int.TryParse(Console.ReadLine(), out int searchId))
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        message = "ID";
-                        Error(message);
-                        Console.ForegroundColor = ConsoleColor.White;
+                        int err = 1;
+                        message = "id";
+                        Error(err,message);
                         return;
                     }
 
@@ -131,15 +119,17 @@ class Program
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        message = "that ID";
-                        Error(message);
-                        Console.ForegroundColor = ConsoleColor.Green;
+                        int err = 2;
+                        message = "found";
+                        Error(err,message);   
                     }
                     break;
 
                 case 2:
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("Enter name to search: ");
+                    Console.ForegroundColor = ConsoleColor.White;
+
                     string searchName = Console.ReadLine().ToLower();
 
                     var itemsByName = Inventory.GetItems()
@@ -156,16 +146,11 @@ class Program
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("No item found with that name");
-                        Console.ForegroundColor = ConsoleColor.White;
+                        
+                        int err = 2;
+                        message = "found";
+                        Error(err,message);
                     }
-                    break;
-
-                default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid choice.");
-                    Console.ForegroundColor = ConsoleColor.White;
                     break;
             }
         }
@@ -180,9 +165,9 @@ class Program
 
             if (!int.TryParse(Console.ReadLine(), out int sortChoice))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid choice. Returning to main menu.");
-                Console.ForegroundColor = ConsoleColor.White;
+                int err = 1;
+                message = "choice";
+                Error(err, message);
                 return;
             }
 
@@ -200,9 +185,9 @@ class Program
                     items = items.OrderBy(x => x.Price).ToList();
                     break;
                 default:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Invalid choice.");
-                    Console.ForegroundColor = ConsoleColor.White;
+                    int err = 1;
+                    message = "choice";
+                    Error(err, message);
                     return;
             }
 
@@ -221,7 +206,9 @@ class Program
             Console.WriteLine("Enter number of item to update: ");
             if (!int.TryParse(Console.ReadLine(), out int selection) || selection < 1 || selection > ilosc)
             {
-                Console.WriteLine("Invalid choice");
+                int err = 1;
+                message = "choice";
+                Error(err, message);
             }
 
             var selectedItem = items[selection - 1];
@@ -244,9 +231,9 @@ class Program
 
                 if (!double.TryParse(priceInput, out newPrice))
                 {
-
-                    string error = "price";
-                    // DisplayError(ilosc, error);
+                    int err = 1;
+                    message = "price";
+                    Error(err, message);
                 }
             }
 
@@ -259,9 +246,9 @@ class Program
 
                 if (!int.TryParse(quantityInput, out newQuantity))
                 {
-
-                    string error = "quantity";
-                    // DisplayError(ilosc, error);
+                    int err = 1;
+                    message = "quantity";
+                    Error(err, message);
                 }
             }
 
@@ -299,9 +286,9 @@ class Program
 
             if (!int.TryParse(Console.ReadLine(), out choice))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid choice, choose again ");
-                Console.ForegroundColor = ConsoleColor.White;
+                int err = 1;
+                message = "choice";
+                Error(err, message);
             }
             switch (choice)
             {
