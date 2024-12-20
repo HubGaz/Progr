@@ -22,10 +22,6 @@
         _items.Add(item);
         
     }
-    public static void SaveToJson()
-    {
-        string jsonString = System.Text.Json.JsonSerializer.Serialize(_items);
-        File.WriteAllText(JsonFilePath, jsonString);
-    }
+    
 
 }
