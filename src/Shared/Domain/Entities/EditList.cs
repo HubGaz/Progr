@@ -9,9 +9,11 @@
             Console.WriteLine("Dodaj nowy przedmiot:");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Enter item ID: ");
+
             int id;
-            while (!int.TryParse(Console.ReadLine(), out id))
-            {
+
+            while (!int.TryParse(Console.ReadLine(), out id)){
+
                 Console.ForegroundColor = ConsoleColor.Red;
                 int err = 1;
                 message = "id";
@@ -24,8 +26,8 @@
             string name = Console.ReadLine();
 
             Console.Write("Enter item price: ");
-            if (!double.TryParse(Console.ReadLine(), out double price))
-            {
+            if (!double.TryParse(Console.ReadLine(), out double price)){
+
                 int err = 1;
                 message = "price";
                 ErrorHandling.Error(err, message);
@@ -33,8 +35,8 @@
             }
 
             Console.Write("Enter item quantity: ");
-            if (!int.TryParse(Console.ReadLine(), out int quantity))
-            {
+            if (!int.TryParse(Console.ReadLine(), out int quantity)){
+
                 int err = 1;
                 message = "quantity";
                 ErrorHandling.Error(err, message);
@@ -45,14 +47,14 @@
             Inventory.AddItem(newItem);
         }
 
-       public void Update()
-        {
+       public void Update(){
+
             var items = Inventory.GetItems();
             int ilosc = items.Count;
 
             Console.WriteLine("Enter number of item to update: ");
-            if (!int.TryParse(Console.ReadLine(), out int selection) || selection < 1 || selection > ilosc)
-            {
+            if (!int.TryParse(Console.ReadLine(), out int selection) || selection < 1 || selection > ilosc){
+
                 int err = 1;
                 message = "choice";
                 ErrorHandling.Error(err, message);
@@ -63,8 +65,7 @@
             Console.WriteLine("Enter new name:");
             string newName = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(newName))
-            {
+            if (string.IsNullOrWhiteSpace(newName)){
 
                 newName = selectedItem.Name;
             }
@@ -73,11 +74,10 @@
             string priceInput = Console.ReadLine();
             double newPrice = selectedItem.Price;
 
-            if (!string.IsNullOrWhiteSpace(priceInput))
-            {
+            if (!string.IsNullOrWhiteSpace(priceInput)){
 
-                if (!double.TryParse(priceInput, out newPrice))
-                {
+                if (!double.TryParse(priceInput, out newPrice)){
+
                     int err = 1;
                     message = "price";
                     ErrorHandling.Error(err, message);
@@ -88,11 +88,10 @@
             string quantityInput = Console.ReadLine();
             int newQuantity = (int)selectedItem.Quantity;
 
-            if (!string.IsNullOrWhiteSpace(quantityInput))
-            {
+            if (!string.IsNullOrWhiteSpace(quantityInput)){
 
-                if (!int.TryParse(quantityInput, out newQuantity))
-                {
+                if (!int.TryParse(quantityInput, out newQuantity)){
+
                     int err = 1;
                     message = "quantity";
                     ErrorHandling.Error(err, message);
@@ -108,8 +107,8 @@
 
 
         }
-        public void Remove()
-        {
+        public void Remove(){
+
 
         }
 
