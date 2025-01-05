@@ -3,40 +3,59 @@
    public class Display
     {
         string message;
-        public void View()
+
+        public void Menu()
         {
+
+            Console.WriteLine("Menu:");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("   ");
+            Console.WriteLine("1. View inventory: ");
+            Console.WriteLine("2. Add item: ");
+            Console.WriteLine("3. Add multiple: ");
+            Console.WriteLine("4. Search (for item): ");
+            Console.WriteLine("5. Sort (Id/Name/Price): ");
+            Console.WriteLine("6. Save to file: ");
+            Console.WriteLine("7. Update: ");
+            Console.WriteLine("8. Remove: ");
+            Console.WriteLine("9. Contact Support");
+            Console.WriteLine("10. Exit");
+            Console.WriteLine("   ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("What do you want to do ? :");
+        }
+        public void View(){
+
             var items = Inventory.GetItems();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Lista przedmiotów:");
             Console.ForegroundColor = ConsoleColor.White;
+
             foreach (var item in items)
             {
                 item.ViewInventory();
             }
             Console.WriteLine("   ");
         }
-       public void Sort()
-        {
+       public void Sort(){
 
-            
             Console.WriteLine("Sort by:");
             Console.WriteLine("1. ID");
             Console.WriteLine("2. Name");
             Console.WriteLine("3. Price");
             Console.Write("Enter your choice (1-3): ");
 
-            if (!int.TryParse(Console.ReadLine(), out int sortChoice))
-            {
-                int err = 1;
+            if (!int.TryParse(Console.ReadLine(), out int sortChoice)){
+
                 message = "choice";
-                ErrorHandling.Error(err, message);
+                ErrorHandling.Error(message);
                 return;
             }
 
             var items = Inventory.GetItems().ToList();
 
-            switch (sortChoice)
-            {
+            switch (sortChoice){
+
                 case 1:
                     items = items.OrderBy(x => x.Id).ToList();
                     break;
@@ -47,65 +66,65 @@
                     items = items.OrderBy(x => x.Price).ToList();
                     break;
                 default:
-                    int err = 1;
+                    
                     message = "choice";
-                    ErrorHandling.Error(err, message);
+                    ErrorHandling.Error(message);
                     return;
             }
 
             Console.WriteLine("\nSorted inventory:");
-            foreach (var item in items)
-            {
+            foreach (var item in items){
+
                 item.ViewInventory();
             }
 
         }
 
-       public void Search()
-        {
+       public void Search(){
+
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Search by:");
             Console.ForegroundColor = ConsoleColor.White;
+
             Console.WriteLine("1. ID");
             Console.WriteLine("2. Name");
             Console.Write("Enter your choice (1 or 2): ");
 
-            if (!int.TryParse(Console.ReadLine(), out int searchChoice))
-            {
-                int err = 1;
+            if (!int.TryParse(Console.ReadLine(), out int searchChoice)){
+
+                
                 message = "choice";
-                ErrorHandling.Error(err, message);
+                ErrorHandling.Error(message);
 
                 return;
             }
 
-            switch (searchChoice)
-            {
+            switch (searchChoice){
+
                 case 1:
                     Console.Write("Enter id to search: ");
-                    if (!int.TryParse(Console.ReadLine(), out int searchId))
-                    {
-                        int err = 1;
+                    if (!int.TryParse(Console.ReadLine(), out int searchId)){
+
                         message = "id";
-                        ErrorHandling.Error(err, message);
+                        ErrorHandling.Error(message);
                         return;
                     }
 
                     var itemById = Inventory.GetItems().FirstOrDefault(x => x.Id == searchId);
-                    if (itemById != null)
-                    {
+                    if (itemById != null){
+
                         Console.WriteLine("\nFound item:");
                         itemById.ViewInventory();
                     }
-                    else
-                    {
-                        int err = 2;
+                    else{
+
                         message = "found";
-                        ErrorHandling.Error(err, message);
+                        ErrorHandling.Error(message);
                     }
                     break;
 
                 case 2:
+
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("Enter name to search: ");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -116,20 +135,19 @@
                         .Where(x => x.Name.ToLower().Contains(searchName))
                         .ToList();
 
-                    if (itemsByName.Any())
-                    {
+                    if (itemsByName.Any()){
+
                         Console.WriteLine("\nFound items:");
-                        foreach (var item in itemsByName)
-                        {
+                        foreach (var item in itemsByName){
+
                             item.ViewInventory();
                         }
                     }
-                    else
-                    {
+                    else{
 
-                        int err = 2;
+
                         message = "found";
-                        ErrorHandling.Error(err, message);
+                        ErrorHandling.Error(message);
                     }
                     break;
             }

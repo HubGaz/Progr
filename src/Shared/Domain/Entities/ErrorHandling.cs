@@ -3,23 +3,11 @@ namespace Domain.Entities
 {
   public class ErrorHandling
     {
-        public static void Error(int err, string message)
+        public static void Error(string message)
         {
-            switch (err){
-
-                case 1:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($" Invalid {message}");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    break;
-
-                case 2:
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("no item found");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    break;
-
-            }
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Invalid {message}");
+            Console.ForegroundColor = ConsoleColor.White;
 
         }
     }
