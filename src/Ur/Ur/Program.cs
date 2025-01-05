@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.Design;
-
+﻿
 namespace Domain.Entities;
 class Program
 {
@@ -7,6 +6,7 @@ class Program
     {
         var display = new Display();
         var editlist = new EditList();
+        var support = new Support();
         bool Doit = true;
         int choice;
         string message;
@@ -62,6 +62,11 @@ class Program
                     break;
 
                 case 9:
+
+                    support.ContactSupport();
+                    break;
+
+                case 10:
 
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Have a great day");
