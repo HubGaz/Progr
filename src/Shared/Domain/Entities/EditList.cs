@@ -15,9 +15,8 @@
             while (!int.TryParse(Console.ReadLine(), out id)){
 
                 Console.ForegroundColor = ConsoleColor.Red;
-                int err = 1;
                 message = "id";
-                ErrorHandling.Error(err, message);
+                ErrorHandling.Error(message);
                 Console.ForegroundColor = ConsoleColor.White;
             }
 
@@ -28,23 +27,26 @@
             Console.Write("Enter item price: ");
             if (!double.TryParse(Console.ReadLine(), out double price)){
 
-                int err = 1;
                 message = "price";
-                ErrorHandling.Error(err, message);
+                ErrorHandling.Error(message);
                 return;
             }
 
             Console.Write("Enter item quantity: ");
             if (!int.TryParse(Console.ReadLine(), out int quantity)){
 
-                int err = 1;
                 message = "quantity";
-                ErrorHandling.Error(err, message);
+                ErrorHandling.Error(message);
                 return;
             }
 
             var newItem = new Item(id, name, price, quantity);
             Inventory.AddItem(newItem);
+        }
+
+        public void AddMultiple()
+        {
+
         }
 
        public void Update(){
@@ -55,9 +57,8 @@
             Console.WriteLine("Enter number of item to update: ");
             if (!int.TryParse(Console.ReadLine(), out int selection) || selection < 1 || selection > ilosc){
 
-                int err = 1;
                 message = "choice";
-                ErrorHandling.Error(err, message);
+                ErrorHandling.Error(message);
             }
 
             var selectedItem = items[selection - 1];
@@ -78,9 +79,8 @@
 
                 if (!double.TryParse(priceInput, out newPrice)){
 
-                    int err = 1;
                     message = "price";
-                    ErrorHandling.Error(err, message);
+                    ErrorHandling.Error(message);
                 }
             }
 
@@ -92,9 +92,8 @@
 
                 if (!int.TryParse(quantityInput, out newQuantity)){
 
-                    int err = 1;
                     message = "quantity";
-                    ErrorHandling.Error(err, message);
+                    ErrorHandling.Error(message);
                 }
             }
 
@@ -107,10 +106,27 @@
 
 
         }
-        public void Remove(){
+       public void Remove() {
 
-
+            Console.WriteLine("Enter the ID of the item to remove:");
+            if (int.TryParse(Console.ReadLine(), out int itemId))
+            {
+                var itemToRemove = Inventory.GetItems().FirstOrDefault(item => item.Id == itemId);
+                if (itemToRemove != null)
+                {
+                    Inventory.GetItems().Remove(itemToRemove);
+                    Console.WriteLine($"Item with ID {itemId} has been removed.");
+                }
+                else
+                {
+                    Console.WriteLine($"No item found with ID {itemId}.");
+                }
+            }
+            else
+            {
+                message = "id";
+                ErrorHandling.Error(message);
+            }
         }
-
     }
 }

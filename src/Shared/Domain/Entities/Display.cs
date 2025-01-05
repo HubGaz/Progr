@@ -12,12 +12,13 @@
             Console.WriteLine("   ");
             Console.WriteLine("1. View inventory: ");
             Console.WriteLine("2. Add item: ");
-            Console.WriteLine("3. Search (for item): ");
-            Console.WriteLine("4. Sort (Id/Name/Price): ");
-            Console.WriteLine("5. Save to file: ");
-            Console.WriteLine("6. Update: ");
-            Console.WriteLine("7. Remove: ");
-            Console.WriteLine("8. Exit");
+            Console.WriteLine("3. Add multiple: ");
+            Console.WriteLine("4. Search (for item): ");
+            Console.WriteLine("5. Sort (Id/Name/Price): ");
+            Console.WriteLine("6. Save to file: ");
+            Console.WriteLine("7. Update: ");
+            Console.WriteLine("8. Remove: ");
+            Console.WriteLine("9. Exit");
             Console.WriteLine("   ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("What do you want to do ? :");
@@ -45,9 +46,8 @@
 
             if (!int.TryParse(Console.ReadLine(), out int sortChoice)){
 
-                int err = 1;
                 message = "choice";
-                ErrorHandling.Error(err, message);
+                ErrorHandling.Error(message);
                 return;
             }
 
@@ -65,9 +65,9 @@
                     items = items.OrderBy(x => x.Price).ToList();
                     break;
                 default:
-                    int err = 1;
+                    
                     message = "choice";
-                    ErrorHandling.Error(err, message);
+                    ErrorHandling.Error(message);
                     return;
             }
 
@@ -91,9 +91,9 @@
 
             if (!int.TryParse(Console.ReadLine(), out int searchChoice)){
 
-                int err = 1;
+                
                 message = "choice";
-                ErrorHandling.Error(err, message);
+                ErrorHandling.Error(message);
 
                 return;
             }
@@ -104,9 +104,8 @@
                     Console.Write("Enter id to search: ");
                     if (!int.TryParse(Console.ReadLine(), out int searchId)){
 
-                        int err = 1;
                         message = "id";
-                        ErrorHandling.Error(err, message);
+                        ErrorHandling.Error(message);
                         return;
                     }
 
@@ -118,9 +117,8 @@
                     }
                     else{
 
-                        int err = 2;
                         message = "found";
-                        ErrorHandling.Error(err, message);
+                        ErrorHandling.Error(message);
                     }
                     break;
 
@@ -146,9 +144,9 @@
                     }
                     else{
 
-                        int err = 2;
+
                         message = "found";
-                        ErrorHandling.Error(err, message);
+                        ErrorHandling.Error(message);
                     }
                     break;
             }

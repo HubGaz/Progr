@@ -12,14 +12,12 @@ class Program
         string message;
 
         do{
+            
             display.Menu();
-
-
             if (!int.TryParse(Console.ReadLine(), out choice)){
 
-                int err = 1;
                 message = "choice";
-                ErrorHandling.Error(err, message);
+                ErrorHandling.Error(message);
             }
             
             switch (choice){
@@ -36,30 +34,34 @@ class Program
                     break;
 
                 case 3:
+                    editlist.AddMultiple();
+                    break;
+
+                case 4:
                     
                     display.Search();
                     break;
 
-                case 4:
+                case 5:
 
                     display.Sort();
                     break;
 
-                case 5:
+                case 6:
 
                     var itemsToSave = Inventory.GetItems(); 
                     json.SaveToJson(itemsToSave);
                     break;
-                case 6:
+                case 7:
 
                     editlist.Update();
                     break;
-                case 7:
+                case 8:
 
                     editlist.Remove();
                     break;
 
-                case 8:
+                case 9:
 
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Have a great day");
