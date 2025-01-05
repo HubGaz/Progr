@@ -109,6 +109,26 @@
         }
         public void Remove(){
 
+            {
+                Console.WriteLine("Enter the ID of the item to remove:");
+                if (int.TryParse(Console.ReadLine(), out int itemId))
+                {
+                    var itemToRemove = Inventory.GetItems().FirstOrDefault(item => item.Id == itemId);
+                    if (itemToRemove != null)
+                    {
+                        Inventory.GetItems().Remove(itemToRemove);
+                        Console.WriteLine($"Item with ID {itemId} has been removed.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"No item found with ID {itemId}.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid ID.");
+                }
+            }
 
         }
 
