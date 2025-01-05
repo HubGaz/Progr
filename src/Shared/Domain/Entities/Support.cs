@@ -49,7 +49,9 @@ namespace Domain.Entities
                 email = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(email) || !Regex.IsMatch(email, emailPattern))
                 {
-                    Console.WriteLine("Invalid email format. Please enter a valid email address.");
+                    string message = "email format";
+                    ErrorHandling.Error(message);
+                    Console.WriteLine(" Please enter a valid email address.");
                 }
             } while (string.IsNullOrWhiteSpace(email) || !Regex.IsMatch(email, emailPattern));
 
