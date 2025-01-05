@@ -46,7 +46,20 @@
 
         public void AddMultiple()
         {
+            Console.WriteLine("How many item do you want to add ? ");
+            int ile;
 
+            if (!int.TryParse(Console.ReadLine(), out ile)) {
+
+                string message = "number";
+                ErrorHandling.Error(message);
+            }
+
+            for (int i = 0; i < ile; i++) {
+
+                Add();
+                Console.WriteLine("    ");
+            }
         }
 
        public void Update(){
