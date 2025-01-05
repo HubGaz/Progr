@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities;
+﻿using System.ComponentModel.Design;
+
+namespace Domain.Entities;
 class Program
 {
     static void Main(string[] args)
@@ -10,21 +12,8 @@ class Program
         string message;
 
         do{
+            display.Menu();
 
-            Console.WriteLine("Menu:");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("   ");
-            Console.WriteLine("1. View inventory: ");
-            Console.WriteLine("2. Add item: ");
-            Console.WriteLine("3. Search (for item): ");
-            Console.WriteLine("4. Sort (Id/Name/Price): ");
-            Console.WriteLine("5. Save to file: ");
-            Console.WriteLine("6. Update: ");
-            Console.WriteLine("7. Remove: ");
-            Console.WriteLine("8. Exit");
-            Console.WriteLine("   ");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("What do you want to do ? :");
 
             if (!int.TryParse(Console.ReadLine(), out choice)){
 
