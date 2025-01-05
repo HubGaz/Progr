@@ -119,7 +119,8 @@
 
 
         }
-       public void Remove() {
+        public void Remove(){
+
 
             Console.WriteLine("Enter the ID of the item to remove:");
             if (int.TryParse(Console.ReadLine(), out int itemId))
