@@ -142,5 +142,9 @@
                 ErrorHandling.Error(message);
             }
         }
+        public void RemoveMultiple()
+        {
+
+        }
     }
 }

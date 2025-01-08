@@ -1,4 +1,6 @@
 ﻿
+using System.Globalization;
+
 namespace Domain.Entities;
 class Program
 {
@@ -63,15 +65,35 @@ class Program
 
                 case 9:
 
-                    support.ContactSupport();
+                    editlist.RemoveMultiple();
                     break;
 
                 case 10:
 
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Have a great day");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Doit = false;
+                    support.ContactSupport();
+                    break;
+
+                case 11:
+                    Console.WriteLine("Do you want to Exit ? (yes/no)");
+                    string exitchoice = Console.ReadLine();
+                    if (exitchoice == "yes")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Have a great day! ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Doit = false;
+
+                    }else if (exitchoice == "no")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Continuing the program...");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        message = "choice";
+                        ErrorHandling.Error(message);
+                    }
                     break;
             };
         } while (Doit);
