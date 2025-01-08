@@ -65,10 +65,15 @@ class Program
 
                 case 9:
 
-                    support.ContactSupport();
+                    editlist.RemoveMultiple();
                     break;
 
                 case 10:
+
+                    support.ContactSupport();
+                    break;
+
+                case 11:
                     Console.WriteLine("Do you want to Exit ? (yes/no)");
                     string exitchoice = Console.ReadLine();
                     if (exitchoice == "yes")

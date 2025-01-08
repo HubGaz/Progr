@@ -18,8 +18,9 @@
             Console.WriteLine("6. Save to file: ");
             Console.WriteLine("7. Update: ");
             Console.WriteLine("8. Remove: ");
-            Console.WriteLine("9. Contact Support");
-            Console.WriteLine("10. Exit");
+            Console.WriteLine("9. Remove multiple: ");
+            Console.WriteLine("10. Contact Support");
+            Console.WriteLine("11. Exit");
             Console.WriteLine("   ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("What do you want to do ? :");
