@@ -1,4 +1,6 @@
 ﻿
+using System.Globalization;
+
 namespace Domain.Entities;
 class Program
 {
@@ -67,11 +69,26 @@ class Program
                     break;
 
                 case 10:
+                    Console.WriteLine("Do you want to Exit ? (yes/no)");
+                    string exitchoice = Console.ReadLine();
+                    if (exitchoice == "yes")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Have a great day! ");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Doit = false;
 
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("Have a great day");
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Doit = false;
+                    }else if (exitchoice == "no")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Continuing the program...");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        message = "choice";
+                        ErrorHandling.Error(message);
+                    }
                     break;
             };
         } while (Doit);
