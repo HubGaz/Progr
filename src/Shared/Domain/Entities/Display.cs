@@ -41,11 +41,14 @@
         }
         public void ViewReserved()
         {
-            var items = Inventory.GetItems(); // Assuming this method retrieves all items
+            var items = Inventory.GetItems(); // Retrieve all items
+            Console.WriteLine("Reserved Items:");
             foreach (var item in items)
             {
-                string reservationStatus = item.IsReserved ? "Reserved" : "Available";
-                Console.WriteLine($"Item ID: {item.Id}, Name: {item.Name}, Status: {reservationStatus}");
+                if (item.ReservedQuantity > 0) // Check if there are any reserved items
+                {
+                    Console.WriteLine($"Item ID: {item.Id}, Name: {item.Name}, Reserved Quantity: {item.ReservedQuantity}");
+                }
             }
         }
         public void Sort(){

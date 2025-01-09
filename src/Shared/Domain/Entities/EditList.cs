@@ -176,7 +176,7 @@
                 Console.WriteLine("Enter the amount to reserve:");
                 int amountToReserve = int.Parse(Console.ReadLine());
 
-               
+                
                 if (Inventory.CanReserve(itemId, amountToReserve))
                 {
                     Inventory.ReserveItem(itemId, amountToReserve); 

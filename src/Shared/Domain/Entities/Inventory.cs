@@ -21,12 +21,13 @@
     }
     public static bool ItemExists(int itemId)
     {
-        return _items.Any(item => item.Id == itemId && !item.IsReserved);
+        return _items.Any(item => item.Id == itemId); 
     }
+
     public static bool CanReserve(int itemId, int amount)
     {
         var item = _items.FirstOrDefault(i => i.Id == itemId);
-        return item != null && item.Quantity >= amount && !item.IsReserved; // Check if enough items are available
+        return item != null && item.Quantity >= amount; 
     }
 
     public static void ReserveItem(int itemId, int amount)
@@ -34,8 +35,8 @@
         var item = _items.FirstOrDefault(i => i.Id == itemId);
         if (item != null && item.Quantity >= amount)
         {
-            item.Quantity -= amount; // Decrease the available quantity
-            item.IsReserved = true; // Mark the item as reserved
+            item.Quantity -= amount; 
+            item.ReservedQuantity += amount; 
         }
     }
 
