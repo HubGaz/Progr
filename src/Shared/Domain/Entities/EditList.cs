@@ -142,9 +142,24 @@
                 ErrorHandling.Error(message);
             }
         }
-        public void RemoveMultiple()
-        {
+        public void RemoveMultiple(){
 
+            Console.WriteLine("How many to remove ?");
+            int ile;
+            if (!int.TryParse(Console.ReadLine(), out ile))
+            {
+
+                string message = "number";
+                ErrorHandling.Error(message);
+            }
+            else{
+               
+                for (int i = 0; i < ile; i++){
+                    
+                    Remove();
+                    Console.WriteLine("\nItem removed succesfully ");
+                }
+            }
         }
     }
 }
