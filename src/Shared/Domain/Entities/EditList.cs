@@ -154,7 +154,7 @@
             if (!int.TryParse(Console.ReadLine(), out ile))
             {
 
-                string message = "number";
+                string message = "amount";
                 ErrorHandling.Error(message);
             }
             else{
