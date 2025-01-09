@@ -5,6 +5,7 @@ public class Item
     public string Name { get; set; }
     public double Price { get; set; }
     public int Quantity { get; set; }
+    public bool IsReserved { get; set; }
     public Item(int id, string name, double price, int quantity)
     {
         Id = id;

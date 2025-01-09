@@ -20,7 +20,8 @@
             Console.WriteLine("8. Remove: ");
             Console.WriteLine("9. Remove multiple: ");
             Console.WriteLine("10. Contact Support");
-            Console.WriteLine("11. Exit");
+            Console.WriteLine("11. Add Reservation");
+            Console.WriteLine("12. Exit");
             Console.WriteLine("   ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("What do you want to do ? :");
@@ -38,7 +39,16 @@
             }
             Console.WriteLine("   ");
         }
-       public void Sort(){
+        public void ViewReserved()
+        {
+            var items = Inventory.GetItems(); // Assuming this method retrieves all items
+            foreach (var item in items)
+            {
+                string reservationStatus = item.IsReserved ? "Reserved" : "Available";
+                Console.WriteLine($"Item ID: {item.Id}, Name: {item.Name}, Status: {reservationStatus}");
+            }
+        }
+        public void Sort(){
 
             Console.WriteLine("Sort by:");
             Console.WriteLine("1. ID");
