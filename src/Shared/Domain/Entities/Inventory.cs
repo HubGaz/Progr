@@ -1,8 +1,11 @@
 ﻿
  public class Inventory
 {
-    private static List<Item> _items = new List<Item>();
     private const string JsonFilePath = @"C:\Users\diabl\Documents\GitHub\Progr\src\Ur\inventory.json";
+
+    private static List<Item> _items = new List<Item>();
+
+    
     public static List<Item> GetItems()
     {
         if (!_items.Any())
@@ -15,6 +18,26 @@
             };
         }
         return _items;
+    }
+    public static bool ItemExists(int itemId)
+    {
+        return _items.Any(item => item.Id == itemId); 
+    }
+
+    public static bool CanReserve(int itemId, int amount)
+    {
+        var item = _items.FirstOrDefault(i => i.Id == itemId);
+        return item != null && item.Quantity >= amount; 
+    }
+
+    public static void ReserveItem(int itemId, int amount)
+    {
+        var item = _items.FirstOrDefault(i => i.Id == itemId);
+        if (item != null && item.Quantity >= amount)
+        {
+            item.Quantity -= amount; 
+            item.ReservedQuantity += amount; 
+        }
     }
 
     public static void AddItem(Item item)

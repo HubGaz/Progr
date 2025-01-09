@@ -1,13 +1,11 @@
 ﻿
-using System.Globalization;
-
 namespace Domain.Entities;
 class Program
 {
     static void Main(string[] args)
     {
         var display = new Display();
-        var editlist = new EditList();
+        var editlist = new EditList(display);
         var support = new Support();
         bool Doit = true;
         int choice;
@@ -72,8 +70,11 @@ class Program
 
                     support.ContactSupport();
                     break;
-
                 case 11:
+                    editlist.AddReservation();
+                    break;
+
+                case 12:
                     Console.WriteLine("Do you want to Exit ? (yes/no)");
                     string exitchoice = Console.ReadLine();
                     if (exitchoice == "yes")

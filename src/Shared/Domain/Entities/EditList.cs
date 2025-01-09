@@ -3,6 +3,11 @@
     public class EditList
     {
         string message;
+        private Display display;
+        public EditList(Display display)
+        {
+            this.display = display; 
+        }
         public void Add()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -142,9 +147,53 @@
                 ErrorHandling.Error(message);
             }
         }
-        public void RemoveMultiple()
-        {
+        public void RemoveMultiple(){
 
+            Console.WriteLine("How many to remove ?");
+            int ile;
+            if (!int.TryParse(Console.ReadLine(), out ile))
+            {
+
+                string message = "number";
+                ErrorHandling.Error(message);
+            }
+            else{
+               
+                for (int i = 0; i < ile; i++){
+                    
+                    Remove();
+                    Console.WriteLine("\nItem removed succesfully ");
+                }
+            }
         }
+        public void AddReservation()
+        {
+            Console.WriteLine("Enter item ID to reserve:");
+            int itemId = int.Parse(Console.ReadLine());
+
+            if (Inventory.ItemExists(itemId))
+            {
+                Console.WriteLine("Enter the amount to reserve:");
+                int amountToReserve = int.Parse(Console.ReadLine());
+
+                
+                if (Inventory.CanReserve(itemId, amountToReserve))
+                {
+                    Inventory.ReserveItem(itemId, amountToReserve); 
+                    Console.WriteLine($"Reserved {amountToReserve} of item {itemId}.");
+                    
+                    display.ViewReserved(); 
+                }
+                else
+                {
+                    Console.WriteLine("Not enough items available to reserve.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Item not found or already reserved.");
+            }
+        }
+
     }
 }
