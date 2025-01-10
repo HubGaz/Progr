@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities
 {
-    public class json
+    public class Json
     {
         private const string JsonFilePath = @"C:\Users\diabl\Documents\GitHub\Progr\src\Ur\inventory.json";
 
