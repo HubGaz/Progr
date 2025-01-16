@@ -3,7 +3,11 @@
    public class Display
     {
         string message;
+    
+        public void DisplayMenu()
+        {
 
+        }
         public void Menu()
         {
 
@@ -25,6 +29,7 @@
             Console.WriteLine("   ");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("What do you want to do ? :");
+            
         }
         public void View(){
 
@@ -166,7 +171,32 @@
                     break;
             }
         }
+        public bool Exit(bool ShouldContinue)
+        {
+            Console.WriteLine("Do you want to Exit ? (yes/no)");
+            string exitchoice = Console.ReadLine();
+            if (exitchoice.Equals("yes"))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Have a great day! ");
+                Console.ForegroundColor = ConsoleColor.White;
+                return false;
 
+            }
+            else if (exitchoice == "no")
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Continuing the program...");
+                Console.ForegroundColor = ConsoleColor.White;
+                return true;
+            }
+            else
+            {
+                message = "choice";
+                ErrorHandling.Error(message);
+                return true;
+            }   
+        }
 
     }
 }

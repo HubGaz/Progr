@@ -7,7 +7,7 @@ class Program
         var display = new Display();
         var editlist = new EditList(display);
         var support = new Support();
-        bool Doit = true;
+        bool ShouldContinue = true;
         int choice;
         string message;
 
@@ -75,28 +75,9 @@ class Program
                     break;
 
                 case 12:
-                    Console.WriteLine("Do you want to Exit ? (yes/no)");
-                    string exitchoice = Console.ReadLine();
-                    if (exitchoice == "yes")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Have a great day! ");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Doit = false;
-
-                    }else if (exitchoice == "no")
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Continuing the program...");
-                        Console.ForegroundColor = ConsoleColor.White;
-                    }
-                    else
-                    {
-                        message = "choice";
-                        ErrorHandling.Error(message);
-                    }
+                    ShouldContinue = display.Exit(ShouldContinue);
                     break;
             };
-        } while (Doit);
+        } while (ShouldContinue);
     }
 }
