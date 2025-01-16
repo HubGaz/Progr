@@ -6,7 +6,7 @@
         private Display display;
         public EditList(Display display)
         {
-            this.display = display; 
+            this.display = display;
         }
         public void Add()
         {
@@ -17,7 +17,8 @@
 
             int id;
 
-            while (!int.TryParse(Console.ReadLine(), out id)){
+            while (!int.TryParse(Console.ReadLine(), out id))
+            {
 
                 Console.ForegroundColor = ConsoleColor.Red;
                 message = "id";
@@ -30,7 +31,8 @@
             string name = Console.ReadLine();
 
             Console.Write("Enter item price: ");
-            if (!double.TryParse(Console.ReadLine(), out double price)){
+            if (!double.TryParse(Console.ReadLine(), out double price))
+            {
 
                 message = "price";
                 ErrorHandling.Error(message);
@@ -38,7 +40,8 @@
             }
 
             Console.Write("Enter item quantity: ");
-            if (!int.TryParse(Console.ReadLine(), out int quantity)){
+            if (!int.TryParse(Console.ReadLine(), out int quantity))
+            {
 
                 message = "quantity";
                 ErrorHandling.Error(message);
@@ -54,26 +57,30 @@
             Console.WriteLine("How many item do you want to add ? ");
             int ile;
 
-            if (!int.TryParse(Console.ReadLine(), out ile)) {
+            if (!int.TryParse(Console.ReadLine(), out ile))
+            {
 
                 string message = "number";
                 ErrorHandling.Error(message);
             }
 
-            for (int i = 0; i < ile; i++) {
+            for (int i = 0; i < ile; i++)
+            {
 
                 Add();
                 Console.WriteLine("    ");
             }
         }
 
-       public void Update(){
+        public void Update()
+        {
 
             var items = Inventory.GetItems();
             int ilosc = items.Count;
 
             Console.WriteLine("Enter number of item to update: ");
-            if (!int.TryParse(Console.ReadLine(), out int selection) || selection < 1 || selection > ilosc){
+            if (!int.TryParse(Console.ReadLine(), out int selection) || selection < 1 || selection > ilosc)
+            {
 
                 message = "choice";
                 ErrorHandling.Error(message);
@@ -84,7 +91,8 @@
             Console.WriteLine("Enter new name:");
             string newName = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(newName)){
+            if (string.IsNullOrWhiteSpace(newName))
+            {
 
                 newName = selectedItem.Name;
             }
@@ -93,9 +101,11 @@
             string priceInput = Console.ReadLine();
             double newPrice = selectedItem.Price;
 
-            if (!string.IsNullOrWhiteSpace(priceInput)){
+            if (!string.IsNullOrWhiteSpace(priceInput))
+            {
 
-                if (!double.TryParse(priceInput, out newPrice)){
+                if (!double.TryParse(priceInput, out newPrice))
+                {
 
                     message = "price";
                     ErrorHandling.Error(message);
@@ -106,9 +116,11 @@
             string quantityInput = Console.ReadLine();
             int newQuantity = (int)selectedItem.Quantity;
 
-            if (!string.IsNullOrWhiteSpace(quantityInput)){
+            if (!string.IsNullOrWhiteSpace(quantityInput))
+            {
 
-                if (!int.TryParse(quantityInput, out newQuantity)){
+                if (!int.TryParse(quantityInput, out newQuantity))
+                {
 
                     message = "quantity";
                     ErrorHandling.Error(message);
@@ -124,7 +136,8 @@
 
 
         }
-        public void Remove(){
+        public void Remove()
+        {
 
 
             Console.WriteLine("Enter the ID of the item to remove:");
@@ -147,20 +160,23 @@
                 ErrorHandling.Error(message);
             }
         }
-        public void RemoveMultiple(){
+        public void RemoveMultiple()
+        {
 
             Console.WriteLine("How many to remove ?");
             int ile;
             if (!int.TryParse(Console.ReadLine(), out ile))
             {
 
-                string message = "number";
+                string message = "amount";
                 ErrorHandling.Error(message);
             }
-            else{
-               
-                for (int i = 0; i < ile; i++){
-                    
+            else
+            {
+
+                for (int i = 0; i < ile; i++)
+                {
+
                     Remove();
                     Console.WriteLine("\nItem removed succesfully ");
                 }
@@ -171,29 +187,31 @@
             Console.WriteLine("Enter item ID to reserve:");
             int itemId = int.Parse(Console.ReadLine());
 
-            if (Inventory.ItemExists(itemId))
+            if (!Inventory.ItemExists(itemId))
+            {
+                Console.WriteLine("Item not found or already reserved.");
+                return;
+            }
             {
                 Console.WriteLine("Enter the amount to reserve:");
                 int amountToReserve = int.Parse(Console.ReadLine());
 
-                
-                if (Inventory.CanReserve(itemId, amountToReserve))
-                {
-                    Inventory.ReserveItem(itemId, amountToReserve); 
-                    Console.WriteLine($"Reserved {amountToReserve} of item {itemId}.");
-                    
-                    display.ViewReserved(); 
-                }
-                else
+
+                if (!Inventory.CanReserve(itemId, amountToReserve))
                 {
                     Console.WriteLine("Not enough items available to reserve.");
+                    return;
                 }
-            }
-            else
-            {
-                Console.WriteLine("Item not found or already reserved.");
+                Inventory.ReserveItem(itemId, amountToReserve);
+                Console.WriteLine($"Reserved {amountToReserve} of item {itemId}.");
+
+                display.ViewReserved();
+
             }
         }
-
     }
 }
+
+
+    
+

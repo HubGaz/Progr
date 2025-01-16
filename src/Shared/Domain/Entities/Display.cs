@@ -41,11 +41,11 @@
         }
         public void ViewReserved()
         {
-            var items = Inventory.GetItems(); // Retrieve all items
+            var items = Inventory.GetItems(); 
             Console.WriteLine("Reserved Items:");
             foreach (var item in items)
             {
-                if (item.ReservedQuantity > 0) // Check if there are any reserved items
+                if (item.ReservedQuantity > 0) 
                 {
                     Console.WriteLine($"Item ID: {item.Id}, Name: {item.Name}, Reserved Quantity: {item.ReservedQuantity}");
                 }

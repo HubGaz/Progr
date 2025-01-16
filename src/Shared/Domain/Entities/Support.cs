@@ -12,7 +12,6 @@ namespace Domain.Entities
             string email = GetValidEmail("Enter your email: ");
             string message = GetValidInput("Enter your message: ", "Message cannot be empty.");
 
-            // Simulate sending the message to support
             Console.WriteLine("\nSending your message to support...");
             Console.WriteLine($"Name: {name}");
             Console.WriteLine($"Email: {email}");
@@ -39,7 +38,7 @@ namespace Domain.Entities
         private string GetValidEmail(string prompt)
         {
             string email;
-            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; // Simple email regex pattern
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; 
 
             do
             {
