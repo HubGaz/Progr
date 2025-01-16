@@ -50,7 +50,7 @@ class Program
                 case 6:
 
                     var itemsToSave = Inventory.GetItems(); 
-                    json.SaveToJson(itemsToSave);
+                    Json.SaveToJson(itemsToSave);
                     break;
                 case 7:
 
