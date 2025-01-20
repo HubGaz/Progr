@@ -4,9 +4,10 @@
     {
         string message;
         private Display display;
-        public EditList(Display display)
+        private Inventory _inventory;
+        public EditList(Inventory inventory) 
         {
-            this.display = display;
+            _inventory = inventory; 
         }
         public void Add()
         {
@@ -49,7 +50,7 @@
             }
 
             var newItem = new Item(id, name, price, quantity);
-            Inventory.AddItem(newItem);
+            _inventory.AddItem(newItem);
         }
 
         public void AddMultiple()
@@ -75,7 +76,7 @@
         public void Update()
         {
 
-            var items = Inventory.GetItems();
+            var items = _inventory.GetItems();
             int ilosc = items.Count;
 
             Console.WriteLine("Enter number of item to update: ");
@@ -143,10 +144,10 @@
             Console.WriteLine("Enter the ID of the item to remove:");
             if (int.TryParse(Console.ReadLine(), out int itemId))
             {
-                var itemToRemove = Inventory.GetItems().FirstOrDefault(item => item.Id == itemId);
+                var itemToRemove = _inventory.GetItems().FirstOrDefault(item => item.Id == itemId);
                 if (itemToRemove != null)
                 {
-                    Inventory.GetItems().Remove(itemToRemove);
+                    _inventory.GetItems().Remove(itemToRemove);
                     Console.WriteLine($"Item with ID {itemId} has been removed.");
                 }
                 else
@@ -187,7 +188,7 @@
             Console.WriteLine("Enter item ID to reserve:");
             int itemId = int.Parse(Console.ReadLine());
 
-            if (!Inventory.ItemExists(itemId))
+            if (!_inventory.ItemExists(itemId))
             {
                 Console.WriteLine("Item not found or already reserved.");
                 return;
@@ -197,12 +198,12 @@
                 int amountToReserve = int.Parse(Console.ReadLine());
 
 
-                if (!Inventory.CanReserve(itemId, amountToReserve))
+                if (!_inventory.CanReserve(itemId, amountToReserve))
                 {
                     Console.WriteLine("Not enough items available to reserve.");
                     return;
                 }
-                Inventory.ReserveItem(itemId, amountToReserve);
+                _inventory.ReserveItem(itemId, amountToReserve);
                 Console.WriteLine($"Reserved {amountToReserve} of item {itemId}.");
 
                 display.ViewReserved();
