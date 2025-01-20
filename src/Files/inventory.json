@@ -3,18 +3,15 @@
     "Id": 1,
     "Name": "Laptop",
     "Price": 1200.5,
-    "Quantity": 5
+    "Quantity": 5,
+    "ReservedQuantity": 0
   },
   {
     "Id": 2,
     "Name": "Telewizor",
     "Price": 1600,
-    "Quantity": 50
+    "Quantity": 50,
+    "ReservedQuantity": 0
   },
-  {
-    "Id": 3,
-    "Name": "Mikser",
-    "Price": 1200.5,
-    "Quantity": 5
-  }
+  
 ]

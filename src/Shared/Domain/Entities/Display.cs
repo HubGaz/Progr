@@ -3,10 +3,10 @@
    public class Display
     {
         string message;
-    
-        public void DisplayMenu()
+        private Inventory _inventory;
+        public Display(Inventory inventory) 
         {
-
+            _inventory = inventory; 
         }
         public void Menu()
         {
@@ -31,22 +31,17 @@
             Console.WriteLine("What do you want to do ? :");
             
         }
-        public void View(){
-
-            var items = Inventory.GetItems();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Lista przedmiotów:");
-            Console.ForegroundColor = ConsoleColor.White;
-
+        public void View()
+        {
+            List<Item> items = _inventory.GetItems(); 
             foreach (var item in items)
             {
-                item.ViewInventory();
+                item.ViewInventory(); 
             }
-            Console.WriteLine("   ");
         }
         public void ViewReserved()
         {
-            var items = Inventory.GetItems(); 
+            var items = _inventory.GetItems(); 
             Console.WriteLine("Reserved Items:");
             foreach (var item in items)
             {
@@ -71,7 +66,7 @@
                 return;
             }
 
-            var items = Inventory.GetItems().ToList();
+            var items = _inventory.GetItems().ToList();
 
             switch (sortChoice){
 
@@ -129,7 +124,7 @@
                         return;
                     }
 
-                    var itemById = Inventory.GetItems().FirstOrDefault(x => x.Id == searchId);
+                    var itemById = _inventory.GetItems().FirstOrDefault(x => x.Id == searchId);
                     if (itemById != null){
 
                         Console.WriteLine("\nFound item:");
@@ -150,7 +145,7 @@
 
                     string searchName = Console.ReadLine().ToLower();
 
-                    var itemsByName = Inventory.GetItems()
+                    var itemsByName = _inventory.GetItems()
                         .Where(x => x.Name.ToLower().Contains(searchName))
                         .ToList();
 
@@ -188,7 +183,7 @@
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Continuing the program...");
                 Console.ForegroundColor = ConsoleColor.White;
-                return true;
+                return true;    
             }
             else
             {
