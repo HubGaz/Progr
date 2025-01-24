@@ -26,8 +26,7 @@
                 ErrorHandling.Error(message);
                 Console.ForegroundColor = ConsoleColor.White;
             }
-
-
+           
             Console.Write("Enter item name: ");
             string name = Console.ReadLine();
 
@@ -50,6 +49,11 @@
             }
 
             var newItem = new Item(id, name, price, quantity);
+            if (_inventory.ItemExists(newItem.Id))
+            {
+                Console.WriteLine($"Item with ID {newItem.Id} already exists. Item not added.");
+                return;
+            }
             _inventory.AddItem(newItem);
         }
 
