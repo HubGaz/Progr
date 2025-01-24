@@ -2,7 +2,7 @@
 
 public class Inventory : IInventory
 {
-    private const string JsonFilePath = @"C:\Users\diabl\Documents\GitHub\Progr\src\Ur\inventory.json";
+    private const string JsonFilePath = @"..\Progr\src\Files";
 
     private static List<Item> _items = new List<Item>();
 

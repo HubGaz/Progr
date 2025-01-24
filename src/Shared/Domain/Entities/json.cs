@@ -2,7 +2,7 @@
 {
     public class Json
     {
-        private static readonly string JsonFilePath = @"..\src\Files\inventory.json"; // Path to save the JSON file
+        private static readonly string JsonFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Progr", "src", "Files", "inventory.json"); // Path to save the JSON file
 
         public static void SaveToJson(List<Item> items)
         {
