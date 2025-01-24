@@ -61,7 +61,7 @@
 
             if (!int.TryParse(Console.ReadLine(), out int sortChoice)){
 
-                message = "choice";
+                message = ", no item found";
                 ErrorHandling.Error(message);
                 return;
             }

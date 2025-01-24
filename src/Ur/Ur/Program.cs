@@ -38,7 +38,7 @@ namespace Domain.Entities
                 switch (choice)
                 {
                     case 1:
-                        var items = _inventory.GetItems(); // Use the instance to call GetItems
+                        var items = _inventory.GetItems(); 
                         display.View();
                         break;
 
@@ -73,6 +73,7 @@ namespace Domain.Entities
 
                     case 9:
                         editlist.RemoveMultiple();
+
                         break;
 
                     case 10:
