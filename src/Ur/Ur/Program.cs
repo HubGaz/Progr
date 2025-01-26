@@ -20,7 +20,7 @@ namespace Domain.Entities
         public void Run()
         {
             var display = new Display(_inventory); 
-            var editlist = new EditList(_inventory); 
+            var editlist = new EditList(_inventory, display); 
             var support = new Support();
             bool shouldContinue = true;
             int choice;
