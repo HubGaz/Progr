@@ -3,10 +3,11 @@
     public class EditList
     {
         string message;
-        private Display display;
+        private Display _display;
         private Inventory _inventory;
-        public EditList(Inventory inventory) 
+        public EditList(Inventory inventory, Display display) 
         {
+            _display = display;
             _inventory = inventory; 
         }
         public void Add()
@@ -210,7 +211,7 @@
                 _inventory.ReserveItem(itemId, amountToReserve);
                 Console.WriteLine($"Reserved {amountToReserve} of item {itemId}.");
 
-                display.ViewReserved();
+                _display.ViewReserved();
 
             }
         }
